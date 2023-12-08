@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ControleDeContatos.Repositorio;
 
 namespace ControleDeContatos
 {
@@ -29,6 +30,8 @@ namespace ControleDeContatos
             services.AddMvc();
             string connection = Configuration.GetConnectionString("StringConexao");
             services.AddDbContextPool<Contexto>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+
+            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
